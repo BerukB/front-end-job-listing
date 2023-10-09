@@ -20,9 +20,9 @@ const getRelativeTime = (date) => {
 
             <img :src="job['logo']" class=" -mt-7 w-14 h-14 object-contain rounded-full md:mt-0 md:mr-4" alt="">
 
-            <section class="flex flex-col md:flex-1 md:justify-between md:flex-row">
-                <section class=" mb-4 w-80">
-                    <div class="flex justify-between mb-2 pr-24 md:pr-0 md:space-x-3">
+            <section class="flex flex-col flex-1 md:justify-between md:flex-row">
+                <section class="flex flex-col flex-none mb-4 w-80 md:justify-start">
+                    <div class="flex justify-between mb-2 md:pr-0 md:space-x-3">
                         <span class="text-base text-primary font-bold">{{ job['company'] }}</span>
                         <div class="flex space-x-2 text-white font-regular">
                             <a v-show="job['isnew']" class="  pt-1 px-2 bg-secondary rounded-full">NEW!</a>
@@ -31,7 +31,7 @@ const getRelativeTime = (date) => {
                     </div>
                     <div class="font-bold">
                         <h3 class="hover:text-desaturatedDarkCyan text-lg mb-1 ">{{ job['position'] }}</h3>
-                        <ul class="  text-darkGrayishCyan flex list-disc list-inside space-x-2">
+                        <ul class="text-darkGrayishCyan flex flex-1 list-disc list-inside space-x-2">
 
                             <li class="list-none"> {{getRelativeTime(job['postedAt']) }}</li>
                             <li v-show="job['contract']" class="">{{ job['contract'] }}</li>
@@ -44,7 +44,7 @@ const getRelativeTime = (date) => {
                 <div class="mb-5 md:hidden">
                     <hr>
                 </div>
-                <div class="flex space-x-4 flex-wrap pr-24 md:pr-0 md:flex-nowrap md:items-center md:ml-5">
+                <div class="flex space-x-4 flex-wrap justify-end md:pr-0 md:flex-wrap md:items-center md:ml-5">
                     <!-- Role -->
                     <a class="p-2 mb-3 filter-button bg-white text-primary border-2 border-secondary hover:border-0 
                         hover:bg-primary hover:text-secondary rounded-md font-bold cursor-pointer">{{job['role']}}</a>

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 
-export const useAuthStore = defineStore({
-  id: 'auth',
+export const useAuthStore = defineStore('auth',{
+
   state: () => ({
-    token: localStorage.getItem('jwt') || '',
+    token: localStorage.getItem('jwt') || null,
     user: localStorage.getItem('user') && localStorage.getItem('user') !== 'undefined' ? json.parse(localStorage.getItem('user')) : null,
   }),
   getters: {

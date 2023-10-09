@@ -2,11 +2,16 @@
 import { RouterLink, RouterView } from 'vue-router';
 import { useAuthStore } from '../stores/authStore';
 import { useRouter } from 'vue-router';
+import { watch } from 'vue';
 
 const router = useRouter();
 
 const authStore = useAuthStore();
 const isAuthenticated = authStore.isAuthenticated;
+
+watch(isAuthenticated, (newValue, oldValue) => {
+  console.log('isAuthenticated has changed from', oldValue, 'to', newValue);
+}, { immediate: true });
 
 console.log(isAuthenticated);
 
@@ -34,7 +39,7 @@ const logOutUser = () => {
               <li><RouterLink class="hover:text-secondary" to="/">Contact Us</RouterLink></li>
               <li><RouterLink class="hover:text-secondary" to="/">Careers</RouterLink></li>
           </ul>
-          <div class="hidden md:block md:space-x-3">
+          <div class="hidden md:block md:space-x-3 ">
 
                 <button
                 @click="logOutUser"
