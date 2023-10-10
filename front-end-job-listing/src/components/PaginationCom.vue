@@ -1,64 +1,46 @@
 <template>
-    <div class="list row">
-      <div class="col-md-8">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search by title"
-            v-model="searchTitle"
-          />
-          <div class="input-group-append">
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-              @click="page = 1; retrieveTutorials();"
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-12">
-        <div class="mb-3">
-          Items per Page:
-          <select v-model="pageSize" @change="handlePageSizeChange($event)">
-            <option v-for="size in pageSizes" :key="size" :value="size">
-              {{ size }}
-            </option>
-          </select>
-        </div>
-  
-        <b-pagination
-          v-model="page"
-          :total-rows="count"
-          :per-page="pageSize"
-          prev-text="Prev"
-          next-text="Next"
-          @change="handlePageChange"
-        ></b-pagination>
-      </div>
-  
-      <div class="col-md-6">
-        <h4>Tutorials List</h4>
-        <ul class="list-group" id="tutorials-list">
-          <li
-            class="list-group-item"
-            :class="{ active: index == currentIndex }"
-            v-for="(tutorial, index) in tutorials"
-            :key="index"
-            @click="setActiveTutorial(tutorial, index)"
-          >
-            {{ tutorial.title }}
-          </li>
-        </ul>
-      </div>
-  
-      ...
+  <div  class="flex container mx-auto justify-between mb-3 ">
+    <button class="btn-11 p-2 w-24 filter-button bg-primary text-white border-2 rounded-md font-bold "> Previous</button>
+    <div>
+      <p>Showing{{ pageLimit }} jobs out of {{ totalJobs }} jobs</p>
     </div>
-  </template>
+    <button class="btn-11 p-2 w-24 filter-button bg-primary text-white border-2rounded-md font-bold"> Next </button>
+  </div>
+</template>
   
-  <script>
-  
-  </script>
+<script>
+
+</script>
+
+<style scoped>
+/* 11 */
+
+.btn-11:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-11:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.btn-11:hover {
+  opacity: .7;
+}
+
+.btn-11:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+</style>

@@ -1,27 +1,21 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import { useAuthStore } from '../stores/authStore';
 import { useRouter } from 'vue-router';
-import { watch } from 'vue';
+import { computed } from 'vue';
 
 const router = useRouter();
 
 const authStore = useAuthStore();
-const isAuthenticated = authStore.isAuthenticated;
-
-watch(isAuthenticated, (newValue, oldValue) => {
-  console.log('isAuthenticated has changed from', oldValue, 'to', newValue);
-}, { immediate: true });
-
-console.log(isAuthenticated);
-
+const isAuthenticated = computed(() =>  authStore.isAuthenticated);
 
 const logOutUser = () => {
     
     authStore.logOut();
-    // isAuthenticated =false;
     router.push('/');
+    
 }
+
 </script>
 
 <template>
@@ -53,14 +47,6 @@ const logOutUser = () => {
               class="border-2 border-secondary px-3 py-2 rounded-full text-center hover:bg-secondary hover:text-white"
               to="/login"
               >Log In</RouterLink
-            >
-            
-           
-            
-            <a
-              class="border-2 border-secondary bg-secondary px-3 py-2 rounded-full hover:bg-white hover:text-black text-white"
-              href="#"
-              >Sign Up</a
             >
           </div>
 

@@ -6,11 +6,6 @@ import { required, email as emailValidator } from '@vuelidate/validators';
 import axios from 'axios';
 import { useAuthStore } from '../stores/authStore'
 
-// const authApi = axios.create({
-//     baseURL: 'http://localhost:5000',
-//     withCredentials: true,
-// });
-
 const email = ref('');
 const password = ref('');
 
@@ -29,14 +24,14 @@ const logInUser = async () => {
     if (!v$.value.$invalid) {
         try {
             const response = await axios.post('http://localhost:5000/auth/users/login', { email: email.value, password: password.value })
-           
+
             const authStore = useAuthStore()
             authStore.logIn({ token: response.data.token, user: response.data.user });
-         
+
             router.push('job-list');
         } catch (error) {
             console.error(error)
-           alert(error.response.data.message);
+            alert(error.response.data.message);
         }
 
     } else if (v$.value.email.$error) {
@@ -55,11 +50,10 @@ const logInUser = async () => {
             <form @submit.prevent="logInUser">
                 <div class="max-w-sm rounded-3xl bg-gradient-to-b from-primary to-secondary p-px">
                     <div class="rounded-[calc(1.5rem-1px)] bg-white px-10 p-12 dark:bg-gray-900">
-                        <div>
+                        <div class="flex flex-col justify-center items-center space-y-2">
+                            <img src="images/MMCYTechLogo.png" class="w-40 object-contain" alt="" />
                             <h1 class="text-xl font-semibold text-gray-800 ">Signin to your account</h1>
-                            <p class="text-sm tracking-wide text-gray-600 ">Don't have an account ? <RouterLink to="/"
-                                    class="text-blue-600 transition duration-200 hover:underline">Signup</RouterLink>
-                                for free</p>
+
                         </div>
 
                         <div class="mt-8 space-y-8">

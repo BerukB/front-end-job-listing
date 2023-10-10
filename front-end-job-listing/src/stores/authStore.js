@@ -28,18 +28,8 @@ export const useAuthStore = defineStore('auth',{
       // and reset the state
       localStorage.removeItem('jwt');
       localStorage.removeItem('user');
-      this.$state = { token: '', user: null };
+      this.$state = { token: null, user: null };
     },
-    init(){
-      const checker= localStorage.getItem('jwt');
-
-      if(checker){
-        this.$state.token = checker
-        this.isAuthenticated = true;
-      }
-    }
+  
   },
-  created() {
-    this.init();
-}
 });
